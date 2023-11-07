@@ -10,9 +10,6 @@ import os
 driver = webdriver.Firefox()
 
 idJobs = [
-    "1744dcf2-dfae-4e7d-b9bf-c40623c9db08",
-    "0c38da63-bdec-42d7-1d6d-dd6323c9db08",
-    "8d31f1af-a907-42f5-70aa-68c0adc9db08",
     "70edaf5e-0195-4874-620e-e2535fb8db08",
     "0dc165ab-c6c9-4057-92c5-c6c7f9c4db08",
     "b13dc961-5d5a-4f41-0dc0-d4b0c9bddb08",
@@ -105,8 +102,17 @@ def click_element_with_id_and_fill_form(element_id, file_path):
 # Make sure to use the absolute path to the file you want to upload
 file_to_upload = os.path.abspath("AlvaroBLlano Resume.pdf")
 
+# The main URL
+main_url = "https://jobs.crelate.com/portal/prediktive/"
+
+# Iterate through idJobs
 for idJob in idJobs:
+    # Click the element and fill the form
     click_element_with_id_and_fill_form(idJob, file_to_upload)
-    driver.back()
-    # wait
+    print(idJob)
+    time.sleep(5)
+    # After filling the form, you can navigate back to the main page using driver.get(main_url) again
+    driver.get(main_url)
+    time.sleep(5)
+
 driver.quit()
